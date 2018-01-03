@@ -34,6 +34,7 @@ def save_user_details(user_information):
     fileno = 0
     final_location = loction_to_store_details + filename + str(fileno)
     while(os.path.isfile(final_location)):
+        final_location = loction_to_store_details + filename + str(fileno)
         fileno+=1
         
     user_information.to_csv(final_location)
