@@ -5,8 +5,18 @@ Created on Wed Jan  3 22:52:50 2018
 @author: punee
 """
 import pandas as pd
-import numpy as np
 import os
+import hashlib
+
+def get_password():
+    ''' Takes input for the password
+        
+            return type - string
+    '''
+    
+    
+    return input("Password : ")
+
 
 def get_user_information():
     ''' Gets user information for storing in a csv file
@@ -14,11 +24,16 @@ def get_user_information():
             return type - pandas Series
         '''
         
-    index_of_details = ['First Name' , 'Lase Name' , 'e-mail id' , 'User Id' , 'Password']
+    index_of_details = ['First Name' , 'Last Name' , 'e-mail id' , 'User Id' , 'Password']
     
     user_details = []
     
     for index in index_of_details:
+        if index == 'Password' :
+            password = get_password()
+            hash_of_password = hashlib.sha3_256(password.encode()).digest()
+            user_details.append(hash_of_password)
+            continue
         user_details.append(input("{} : ".format(index)))
     
     return pd.Series(user_details, index = index_of_details)
