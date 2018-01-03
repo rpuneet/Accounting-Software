@@ -7,6 +7,7 @@ Created on Wed Jan  3 22:52:50 2018
 import pandas as pd
 import os
 import hashlib
+import getpass
 
 def get_password():
     ''' Takes input for the password
@@ -15,7 +16,7 @@ def get_password():
     '''
     
     
-    return input("Password : ")
+    return getpass.getpass("Password : ")
 
 
 def get_user_information():
